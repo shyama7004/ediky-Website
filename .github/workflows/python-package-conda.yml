@@ -1,32 +1,55 @@
 name: Python Package using Conda
 
-on: [push]
+on:
+  push:
+    branches:
+      - main  # Triggers the workflow on push events to the main branch
 
 jobs:
   build-linux:
-    runs-on: ubuntu-latest
+    name: Build and Test on Linux
+    runs-on: ubuntu-latest  # Specifies the latest Ubuntu runner
 
     steps:
+      # Step 1: Checkout the repository code
       - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 1  # Fetch only the latest commit for faster performance
 
+      # Step 2: Set up Miniconda and create the environment
       - name: Set up Miniconda
         uses: conda-incubator/setup-miniconda@v2
         with:
-          environment-file: mlorbit_backend/environment.yml
-          auto-activate-base: false
-          activate-environment: mlorbit_backend
+          environment-file: mlorbit_backend/environment.yml  # Path to your environment.yml
+          auto-activate-base: false  # Do not auto-activate the base environment
+          activate-environment: mlorbit_backend  # Name of the environment to activate
+          python-version: 3.10  # Specify the Python version (optional if defined in environment.yml)
+          miniconda-version: latest  # Use the latest Miniconda installer
 
+      # Step 3: Verify the Conda environment
       - name: Verify Conda Environment
         run: |
-          conda info
-          conda list
+          conda info  # Displays Conda configuration
+          conda list  # Lists all installed packages in the environment
 
+      # Step 4: Lint the backend code with flake8
       - name: Lint with flake8
         run: |
+          # Lint for syntax errors and specific flake8 error codes
           flake8 mlorbit_backend/ --count --select=E9,F63,F7,F82 --show-source --statistics
+          # Lint for code style issues with specific complexity and line length
           flake8 mlorbit_backend/ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
+      # Step 5: Run backend tests with pytest
       - name: Run Pytest
         run: |
-          pytest mlorbit_backend/
+          pytest mlorbit_backend/ --cov=mlorbit_backend/ --cov-report=xml  # Runs tests and generates coverage report
+
+      # Step 6: Upload coverage report as an artifact (optional)
+      - name: Upload Coverage Report
+        if: always()  # Ensures this step runs regardless of previous step outcomes
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: ./mlorbit_backend/coverage.xml  # Path to the coverage report
