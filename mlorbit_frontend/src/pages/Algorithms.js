@@ -1,11 +1,10 @@
-// Algorithms.js
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Editor from "@monaco-editor/react";
 import axios from "axios";
 import "./Algorithms.css";
 
 // Constants
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://127.0.0.1:5000/execute";
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL; // Updated backend URL
 const SUPPORTED_LANGUAGES = {
   python: {
     name: "Python",
