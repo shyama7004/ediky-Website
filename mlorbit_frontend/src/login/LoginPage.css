@@ -1,0 +1,94 @@
+/* General Container */
+.login-container {
+  background: linear-gradient(135deg, #0d1117, #101820);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.login-content {
+  width: 90%;
+  max-width: 1200px;
+}
+
+.left-section {
+  text-align: center;
+  padding: 40px;
+}
+
+.welcome-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ff6f61;
+}
+
+.tagline {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+.login-animation {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Form Section */
+.form-section {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  color: #333;
+}
+
+.form-section h2 {
+  font-size: 1.8rem;
+  color: #0d1117;
+}
+
+.form-container input {
+  border: 2px solid #ddd;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.form-container input:focus {
+  border-color: #ff6f61;
+  box-shadow: 0 0 5px rgba(255, 111, 97, 0.5);
+}
+
+/* Google Button */
+.google-login {
+  background-color: #db4437;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  transition: transform 0.3s;
+}
+
+.google-login:hover {
+  transform: translateY(-2px);
+  background-color: #c1351d;
+  color: #fff;
+}
+
+/* Toggle Text */
+.toggle-text {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.toggle-link {
+  color: #007bff;
+  cursor: pointer;
+}
+
+.toggle-link:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}

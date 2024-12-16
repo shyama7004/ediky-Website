@@ -4,12 +4,11 @@ import Navbar from "./components/Navbar";
 import Sections from "./components/Sections";
 import WelcomeSection from "./components/WelcomeSection";
 import RecommendedSections from "./components/RecommendedSections";
-
-// Import pages
+// Import pages for navigation
 import Algorithms from "./pages/Algorithms";
 import DataStructures from "./pages/DataStructures";
 import MachineLearning from "./pages/MachineLearning";
-
+import LoginPage from "./login/LoginPage";
 function App() {
   return (
     <Router>
@@ -20,9 +19,9 @@ function App() {
           path="/"
           element={
             <>
-              <WelcomeSection />
-              <Sections />
-              <RecommendedSections />
+              <WelcomeSection /> {/* Centered GIF with text */}
+              <Sections /> {/* HTML, CSS, JS Sections */}
+              <RecommendedSections /> {/* Recommended Courses Section */}
             </>
           }
         />
@@ -30,9 +29,10 @@ function App() {
         <Route path="/algorithms" element={<Algorithms />} />
         <Route path="/data-structures" element={<DataStructures />} />
         <Route path="/machine-learning" element={<MachineLearning />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </Router>
   );
 }
 
-export default App; // Ensure this default export exists!
+export default App;

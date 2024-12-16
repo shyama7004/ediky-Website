@@ -1,16 +1,29 @@
-// Navbar.js
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/logo.jpg";
 import ThemeToggle from "./ThemeToggle";
 import "./Navbar.css"; // Ensure this path is correct
+import { UserContext } from "../context/UserContext"; // Import UserContext
+import { auth } from "../login/firebaseConfig"; // Firebase Auth for logout
+import { signOut } from "firebase/auth";
 
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { user, setUser } = useContext(UserContext); // Access global user state
 
   const handleBack = () => {
     navigate(-1);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setUser(null); // Clear user context on logout
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout failed:", error.message);
+    }
   };
 
   // Determine if the current path is the Home page
@@ -46,7 +59,6 @@ function Navbar() {
 
         {/* Navbar Links */}
         <div className="collapse navbar-collapse" id="navbarNav">
-          {/* Left Side: Navigation Links */}
           <ul className="navbar-nav ms-auto align-items-center">
             {/* Back Button - Visible only if not on Home */}
             {!isHome && (
@@ -124,7 +136,6 @@ function Navbar() {
                     Machine Learning
                   </NavLink>
                 </li>
-                {/* Add more dropdown items as needed */}
               </ul>
             </li>
 
@@ -138,13 +149,36 @@ function Navbar() {
                 <i className="fab fa-github me-1"></i> GitHub
               </a>
             </li>
+
+            {/* Conditional Login/User Section */}
+            <li className="nav-item ms-3">
+              {user ? (
+                <div className="nav-link fw-semibold d-flex align-items-center text-success">
+                  <i className="fas fa-user me-2"></i> {user.name}
+                  <button
+                    onClick={handleLogout}
+                    className="btn btn-link text-danger ms-3"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  to="/login"
+                  className="nav-link fw-semibold d-flex align-items-center"
+                  title="Login"
+                >
+                  <i className="fas fa-sign-in-alt me-1"></i> Login
+                </Link>
+              )}
+            </li>
           </ul>
 
           {/* Right Side: Search Bar and Theme Toggle */}
           <form
             className="navbar-search ms-lg-3 mt-3 mt-lg-0"
             role="search"
-            onSubmit={(e) => e.preventDefault()} // Prevent form submission
+            onSubmit={(e) => e.preventDefault()}
           >
             <input
               type="search"
