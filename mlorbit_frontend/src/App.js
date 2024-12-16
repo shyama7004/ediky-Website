@@ -14,21 +14,20 @@ import LoginPage from "./login/LoginPage";
 function App() {
   return (
     <Router>
-      <Navbar /> {/* Main Navbar */}
+      <Navbar />
       <Routes>
-        {/* Home Page */}
         <Route
           path="/"
           element={
             <>
-              <WelcomeSection /> {/* Centered GIF with text */}
-              <Sections /> {/* HTML, CSS, JS Sections */}
-              <RecommendedSections /> {/* Recommended Courses Section */}
+              <WelcomeSection />
+              <Sections />
+              <RecommendedSections />
               <Footer />
+              <AboutSection />
             </>
           }
         />
-        {/* Individual Pages */}
         <Route path="/algorithms" element={<Algorithms />} />
         <Route path="/data-structures" element={<DataStructures />} />
         <Route path="/machine-learning" element={<MachineLearning />} />
