@@ -6,7 +6,7 @@ import os
 import shutil
 
 app = Flask(__name__)
-CORS(app, resources={r"/execute": {"origins": "http://localhost:3001"}})
+CORS(app, resources={r"/execute": {"origins": ["https://mlorbit.netlify.app", "http://localhost:3000"]}})
 
 @app.route('/execute', methods=['POST'])
 def execute_code():
@@ -14,7 +14,6 @@ def execute_code():
     code = data.get("code", "")
     language = data.get("language", "")
 
-    # Language configuration
     language_map = {
         "python": {"extension": ".py", "command": ["python3"]},
         "cpp": {"extension": ".cpp", "command": ["g++"]},
