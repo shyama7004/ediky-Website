@@ -3,12 +3,12 @@ name: Python Package using Conda
 on:
   push:
     branches:
-      - main  # Triggers the workflow on push events to the main branch
+      - main  # Trigger the workflow on push to the main branch
 
 jobs:
   build-linux:
     name: Build and Test on Linux
-    runs-on: ubuntu-latest  # Specifies the latest Ubuntu runner
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
 
     steps:
       # Step 1: Checkout the repository code
@@ -24,8 +24,9 @@ jobs:
           environment-file: mlorbit_backend/environment.yml  # Path to your environment.yml
           auto-activate-base: false  # Do not auto-activate the base environment
           activate-environment: mlorbit_backend  # Name of the environment to activate
-          python-version: 3.10  # Specify the Python version (optional if defined in environment.yml)
-          miniconda-version: latest  # Use the latest Miniconda installer
+          python-version: 3.10  # Specify Python version (optional, already in environment.yml)
+          conda-version: 4.14.0  # Specify a stable Conda version
+          channels: conda-forge  # Ensure conda-forge is used
 
       # Step 3: Verify the Conda environment
       - name: Verify Conda Environment
@@ -41,15 +42,15 @@ jobs:
           # Lint for code style issues with specific complexity and line length
           flake8 mlorbit_backend/ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-      # Step 5: Run backend tests with pytest
+      # Step 5: Run backend tests with pytest and generate coverage report
       - name: Run Pytest
         run: |
           pytest mlorbit_backend/ --cov=mlorbit_backend/ --cov-report=xml  # Runs tests and generates coverage report
 
       # Step 6: Upload coverage report as an artifact (optional)
       - name: Upload Coverage Report
-        if: always()  # Ensures this step runs regardless of previous step outcomes
+        if: always()  # Upload regardless of test success or failure
         uses: actions/upload-artifact@v3
         with:
           name: coverage-report
-          path: ./mlorbit_backend/coverage.xml  # Path to the coverage report
+          path: mlorbit_backend/coverage.xml  # Path to the coverage report
