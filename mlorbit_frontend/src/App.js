@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Sections from "./components/Sections";
 import WelcomeSection from "./components/WelcomeSection";
+import Footer from "./components/Footer";
 import RecommendedSections from "./components/RecommendedSections";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Algorithms from "./pages/Algorithms";
@@ -22,6 +23,7 @@ function App() {
               <WelcomeSection /> {/* Centered GIF with text */}
               <Sections /> {/* HTML, CSS, JS Sections */}
               <RecommendedSections /> {/* Recommended Courses Section */}
+              <Footer />
             </>
           }
         />
