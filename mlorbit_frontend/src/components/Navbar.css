@@ -1,0 +1,152 @@
+/* Navbar.css */
+
+/* Define CSS Variables for Light and Dark Modes */
+:root {
+  --bg-color: #f8f9fa;
+  --text-color: #212529;
+  --nav-link-hover: #007bff;
+  --dropdown-bg: #ffffff;
+  --dropdown-hover-bg: #f0f0f0;
+  --active-dropdown-bg: #e0e0e0;
+  --active-dropdown-color: #007bff;
+}
+
+[data-theme="dark"] {
+  --bg-color: #212529;
+  --text-color: #f8f9fa;
+  --nav-link-hover: #66b2ff;
+  --dropdown-bg: #343a40;
+  --dropdown-hover-bg: #495057;
+  --active-dropdown-bg: #495057;
+  --active-dropdown-color: #66b2ff;
+}
+
+/* Base Navbar Styles */
+.navbar {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.nav-link {
+  color: var(--text-color) !important;
+  margin-right: 1rem;
+  transition: color 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: var(--nav-link-hover) !important;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  background-color: var(--dropdown-bg);
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+  padding: 0.8rem 1rem;
+  transition: background-color 0.2s, color 0.2s;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.dropdown-item:hover {
+  background-color: var(--dropdown-hover-bg);
+  color: var(--nav-link-hover);
+}
+
+/* Active Dropdown Item */
+.active-dropdown {
+  background-color: var(--active-dropdown-bg) !important;
+  color: var(--active-dropdown-color) !important;
+}
+
+/* GitHub Link Styling */
+.nav-link i {
+  font-size: 1.2rem;
+}
+
+/* Shadow */
+.shadow-sm {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Search bar and button */
+.form-control {
+  border-radius: 4px;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  outline: none;
+  border-color: var(--nav-link-hover);
+}
+
+.btn-outline-primary {
+  border-radius: 4px;
+}
+
+.btn-link {
+  color: var(--text-color);
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  text-decoration: none;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+/* Back Button Specific Styles */
+.back-button {
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  color: var(--nav-link-hover);
+}
+
+.back-button i {
+  font-size: 1rem;
+}
+
+/* Active Link Styling */
+.nav-link.active {
+  color: var(--nav-link-hover) !important;
+  font-weight: bold;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .navbar-nav {
+    margin-top: 10px;
+  }
+}
