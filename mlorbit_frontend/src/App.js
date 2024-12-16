@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Sections from "./components/Sections";
 import WelcomeSection from "./components/WelcomeSection";
 import Footer from "./components/Footer";
+import Login from "./login/LoginPage"
 import AboutSection from "./components/AboutSection";
 import RecommendedSections from "./components/RecommendedSections";
 
@@ -28,6 +29,7 @@ function App() {
           }
         />
         <Route path="/about" element={<AboutSection />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/algorithms" element={<Algorithms />} />
         <Route path="/data-structures" element={<DataStructures />} />
         <Route path="/machine-learning" element={<MachineLearning />} />
