@@ -1,0 +1,53 @@
+/* Welcome Section */
+.welcome-section {
+    background-color: var(--card-bg-color, #f8f9fa);
+    color: var(--text-color, #333);
+    padding: 4rem 1.5rem;
+    margin: 2rem auto;
+    max-width: 900px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  /* GIF Styling */
+  .welcome-gif {
+    max-width: 220px;
+    height: auto;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  .button-group .btn {
+    margin-right: 10px; /* Adds space to the right of each button */
+  }
+
+  .button-group .btn:last-child {
+    margin-right: 0; /* Ensures no extra space for the last button */
+  }
+
+/* Blinking Cursor */
+.blinking-cursor {
+    display: inline-block;
+    margin-left: 4px;
+    animation: blink 0.7s infinite;
+    font-weight: bold;
+  }
+
+  @keyframes blink {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+
+  /* Title Styling */
+  .welcome-title {
+    font-size: 2.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--text-color, #343a40);
+  }

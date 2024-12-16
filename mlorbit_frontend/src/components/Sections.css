@@ -1,0 +1,46 @@
+/* Sections Container */
+.sections-container {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+/* Button as Card Design */
+.custom-btn {
+    width: 100%;
+    padding: 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, #6c757d, #495057);
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hover Effect */
+.custom-btn:hover {
+    background: linear-gradient(135deg, #495057, #343a40);
+    color: #f8f9fa;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    transform: translateY(-5px);
+}
+
+/* Icon Addition */
+.custom-btn i {
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+/* Responsive Grid */
+@media (max-width: 768px) {
+    .custom-btn {
+        padding: 1.5rem;
+        font-size: 1rem;
+    }
+}
