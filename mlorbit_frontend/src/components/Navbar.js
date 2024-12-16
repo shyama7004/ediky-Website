@@ -142,18 +142,17 @@ function Navbar() {
 
           {/* Right Side: Search Bar and Theme Toggle */}
           <form
-            className="d-flex ms-lg-3 mt-3 mt-lg-0"
+            className="navbar-search ms-lg-3 mt-3 mt-lg-0"
             role="search"
-            onSubmit={(e) => e.preventDefault()} // Prevent form submission for now
+            onSubmit={(e) => e.preventDefault()} // Prevent form submission
           >
             <input
-              className="form-control me-2"
               type="search"
               placeholder="Search tutorials..."
               aria-label="Search"
             />
-            <button className="btn btn-outline-primary" type="submit">
-              <i className="fas fa-search"></i>
+            <button type="submit">
+              <i className="fas fa-search"></i> Search
             </button>
           </form>
 

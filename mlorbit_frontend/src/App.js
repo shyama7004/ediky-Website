@@ -5,7 +5,7 @@ import Sections from "./components/Sections";
 import WelcomeSection from "./components/WelcomeSection";
 import RecommendedSections from "./components/RecommendedSections";
 
-// Import pages for navigation
+// Import pages
 import Algorithms from "./pages/Algorithms";
 import DataStructures from "./pages/DataStructures";
 import MachineLearning from "./pages/MachineLearning";
@@ -20,9 +20,9 @@ function App() {
           path="/"
           element={
             <>
-              <WelcomeSection /> {/* Centered GIF with text */}
-              <Sections /> {/* HTML, CSS, JS Sections */}
-              <RecommendedSections /> {/* Recommended Courses Section */}
+              <WelcomeSection />
+              <Sections />
+              <RecommendedSections />
             </>
           }
         />
@@ -35,4 +35,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; // Ensure this default export exists!
