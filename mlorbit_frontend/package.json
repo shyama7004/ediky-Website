@@ -2,7 +2,7 @@
   "name": "mlorbit",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Skreg34.github.io/MLOrbit-Website",
+  "homepage": "/",
   "dependencies": {
     "@monaco-editor/react": "^4.6.0",
     "axios": "^1.6.0",
