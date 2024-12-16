@@ -1,6 +1,5 @@
 name: CI/CD Pipeline
 
-# Trigger the workflow on push or pull request events to the main branch
 on:
   push:
     branches:
@@ -16,92 +15,79 @@ jobs:
 
     strategy:
       matrix:
-        # Define the Python and Node.js versions to use
         python-version: [3.9]
         node-version: [16.x]
 
-    # Environment variables accessible to all steps within this job
     env:
       PROJECT_NAME: ${{ github.repository }}
       BRANCH_NAME: ${{ github.ref_name }}
 
     steps:
-      # Step 1: Checkout the repository code
+      # Step 1: Checkout the repository
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1  # Fetch only the latest commit for faster performance
+          fetch-depth: 1
 
       # -------------------
-      # Backend Setup and Testing
+      # Backend Setup
       # -------------------
-
-      # Step 2: Set Up Python Environment
       - name: Set Up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
 
-      # Step 3: Cache pip Dependencies
       - name: Cache pip Dependencies
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/mlorbit_backend/requirements.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('mlorbit_backend/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
-      # Step 4: Install Backend Dependencies
       - name: Install Backend Dependencies
         working-directory: mlorbit_backend
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Step 5: Run Backend Tests
       - name: Run Backend Tests
         working-directory: mlorbit_backend
         run: |
-          pip install pytest  # Ensure pytest is installed
-          pytest || echo "No tests found, skipping backend tests."
+          pip install pytest
+          pytest || echo "No backend tests found, skipping."
 
       # -------------------
-      # Frontend Setup and Testing
+      # Frontend Setup
       # -------------------
-
-      # Step 6: Set Up Node.js Environment
       - name: Set Up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'  # Enable npm caching
+          cache: 'npm'
 
-      # Step 7: Cache npm Dependencies
       - name: Cache npm Dependencies
         uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/mlorbit_frontend/package-lock.json') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('mlorbit_frontend/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-npm-
 
-      # Step 8: Install Frontend Dependencies
       - name: Install Frontend Dependencies
         working-directory: mlorbit_frontend
         run: npm install
 
-      # Step 9: Run Frontend Tests
       - name: Run Frontend Tests
         working-directory: mlorbit_frontend
-        run: npm test -- --watchAll=false || echo "No frontend tests found, skipping tests."
+        run: npm test -- --watchAll=false || echo "No frontend tests found, skipping."
 
-      # Step 10: Build Frontend Application
       - name: Build Frontend
         working-directory: mlorbit_frontend
         run: npm run build
 
       # -------------------
-      # Display Environment Information
+      # Display Environment Info
       # -------------------
       - name: Display Environment Info
         run: |
@@ -110,50 +96,17 @@ jobs:
           echo "🖥️ Runner OS: ${{ runner.os }}"
 
       # -------------------
-      # Upload Build Artifacts
+      # Upload Artifacts
       # -------------------
-
-      # Step 11: Upload Frontend Build as an Artifact
       - name: Upload Frontend Build
         uses: actions/upload-artifact@v3
         with:
           name: frontend-build
           path: mlorbit_frontend/build/
 
-      # Step 12: Upload Backend Logs if the Build Fails
       - name: Upload Backend Logs on Failure
         if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: backend-logs
-          path: mlorbit_backend/logs/
-
-      # -------------------
-      # Notifications (Optional)
-      # -------------------
-
-      # Step 13: Notify on Failure (Placeholder)
-      - name: Notify on Failure
-        if: failure()
-        uses: some-notification-action@v1  # Replace with an actual notification action (e.g., Slack, Email)
-        with:
-          message: "CI/CD Pipeline failed for ${{ github.repository }} on branch ${{ github.ref_name }}."
-
-  # -------------------
-  # Deployment Job (Optional)
-  # -------------------
-  # Uncomment and configure the following job if you wish to deploy after a successful build and test
-
-  # deploy:
-  #   name: Deploy Application
-  #   needs: build-and-test
-  #   runs-on: ubuntu-latest
-  #   if: success()
-  #   steps:
-  #     - name: Checkout Repository
-  #       uses: actions/checkout@v4
-
-  #     - name: Deploy to Production
-  #       run: |
-  #         # Add your deployment scripts here
-  #         echo "Deploying application..."
+          path: mlorbit_backend/logs/ || echo "No logs found."
