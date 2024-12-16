@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import Sections from "./components/Sections";
 import WelcomeSection from "./components/WelcomeSection";
 import RecommendedSections from "./components/RecommendedSections";
-// Import pages for navigation
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import Algorithms from "./pages/Algorithms";
 import DataStructures from "./pages/DataStructures";
 import MachineLearning from "./pages/MachineLearning";
