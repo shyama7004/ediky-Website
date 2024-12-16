@@ -1,0 +1,4 @@
+[build]
+  base = "mlorbit_frontend"
+  command = "npm install && npm run build"
+  publish = "mlorbit_frontend/build"
