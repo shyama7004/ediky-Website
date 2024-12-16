@@ -6,14 +6,18 @@ import os
 import shutil
 
 app = Flask(__name__)
-CORS(app, resources={r"/execute": {"origins": ["https://mlorbit.netlify.app", "http://localhost:3000"]}})
+CORS(app, resources={r"/execute": {"origins": "*"}})  # Update for all origins or Netlify URL
 
 @app.route('/execute', methods=['POST'])
 def execute_code():
     data = request.json
-    code = data.get("code", "")
-    language = data.get("language", "")
+    code = data.get("code")
+    language = data.get("language")
 
+    if not code or not language:
+        return jsonify({"output": "Missing 'code' or 'language' field"}), 400
+
+    # Language configuration
     language_map = {
         "python": {"extension": ".py", "command": ["python3"]},
         "cpp": {"extension": ".cpp", "command": ["g++"]},
@@ -45,4 +49,4 @@ def execute_code():
         shutil.rmtree(temp_dir)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(host='0.0.0.0', port=5000)
