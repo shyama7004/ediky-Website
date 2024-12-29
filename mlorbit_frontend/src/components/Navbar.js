@@ -111,9 +111,9 @@ function Navbar() {
                     className={({ isActive }) =>
                       `dropdown-item ${isActive ? "active-dropdown" : ""}`
                     }
-                    to="/tutorials/algorithms"
+                    to="/dsa-progress"
                   >
-                    Algorithms
+                    DSA Progress
                   </NavLink>
                 </li>
                 <li>
@@ -121,9 +121,9 @@ function Navbar() {
                     className={({ isActive }) =>
                       `dropdown-item ${isActive ? "active-dropdown" : ""}`
                     }
-                    to="/tutorials/data-structures"
+                    to="/tutorials/algorithms"
                   >
-                    Data Structures
+                    Algorithms
                   </NavLink>
                 </li>
                 <li>
