@@ -2,15 +2,15 @@ import React, { useContext } from "react";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/logo.jpg";
 import ThemeToggle from "./ThemeToggle";
-import "./Navbar.css"; // Ensure this path is correct
-import { UserContext } from "../context/UserContext"; // Import UserContext
-import { auth } from "../login/firebaseConfig"; // Firebase Auth for logout
+import "./Navbar.css";
+import { UserContext } from "../context/UserContext";
+import { auth } from "../login/firebaseConfig";
 import { signOut } from "firebase/auth";
 
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, setUser } = useContext(UserContext); // Access global user state
+  const { user, setUser } = useContext(UserContext);
 
   const handleBack = () => {
     navigate(-1);
@@ -19,20 +19,18 @@ function Navbar() {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      setUser(null); // Clear user context on logout
+      setUser(null);
       navigate("/login");
     } catch (error) {
       console.error("Logout failed:", error.message);
     }
   };
 
-  // Determine if the current path is the Home page
   const isHome = location.pathname === "/";
 
   return (
     <nav className="navbar navbar-expand-lg shadow-sm">
       <div className="container">
-        {/* Logo and Brand */}
         <Link className="navbar-brand fw-bold d-flex align-items-center" to="/">
           <img
             src={logo}
@@ -44,7 +42,6 @@ function Navbar() {
           MLOrbit
         </Link>
 
-        {/* Navbar Toggler */}
         <button
           className="navbar-toggler"
           type="button"
@@ -57,10 +54,8 @@ function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Navbar Links */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto align-items-center">
-            {/* Back Button - Visible only if not on Home */}
             {!isHome && (
               <li className="nav-item me-2">
                 <button
@@ -94,7 +89,6 @@ function Navbar() {
               </NavLink>
             </li>
 
-            {/* Tutorials Dropdown */}
             <li className="nav-item dropdown">
               <Link
                 className="nav-link dropdown-toggle fw-semibold"
@@ -150,7 +144,6 @@ function Navbar() {
               </a>
             </li>
 
-            {/* Conditional Login/User Section */}
             <li className="nav-item ms-3">
               {user ? (
                 <div className="nav-link fw-semibold d-flex align-items-center text-success">
@@ -174,7 +167,6 @@ function Navbar() {
             </li>
           </ul>
 
-          {/* Right Side: Search Bar and Theme Toggle */}
           <form
             className="navbar-search ms-lg-3 mt-3 mt-lg-0"
             role="search"
@@ -190,7 +182,6 @@ function Navbar() {
             </button>
           </form>
 
-          {/* Theme Toggle */}
           <div className="ms-3">
             <ThemeToggle />
           </div>

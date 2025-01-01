@@ -1,13 +1,10 @@
-/* Add these new variables to :root */
 :root {
-    /* ... existing variables ... */
     --color-gradient-1: linear-gradient(135deg, #0d81ff 0%, #00e5ff 100%);
     --color-gradient-2: linear-gradient(135deg, #0a66cc 0%, #0055a4 100%);
     --box-shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.3);
     --animation-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Enhanced Container Styling */
 .dsa-progress-container {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -18,7 +15,6 @@
     );
 }
 
-/* Enhanced Title Animation */
 .dsa-title {
     position: relative;
     background: var(--color-gradient-1);
@@ -33,7 +29,6 @@
     to { transform: scale(1.03); }
 }
 
-/* Enhanced Progress Bar */
 .progress-bar {
     background: var(--color-gradient-1);
     box-shadow: 0 0 15px rgba(13, 129, 255, 0.5);
@@ -62,7 +57,6 @@
     100% { transform: translateX(100%); }
 }
 
-/* Enhanced Lecture Cards */
 .dsa-lecture {
     position: relative;
     background: linear-gradient(
@@ -88,7 +82,6 @@
     opacity: 1;
 }
 
-/* Enhanced Input Fields */
 .topic-filter select,
 .search-container input {
     backdrop-filter: blur(5px);
@@ -105,7 +98,6 @@
     box-shadow: 0 5px 15px rgba(13, 129, 255, 0.2);
 }
 
-/* Enhanced Checkbox */
 .completed-checkbox {
     position: relative;
     transition: all 0.3s var(--animation-bounce);
@@ -120,7 +112,6 @@
     100% { transform: scale(1.2); }
 }
 
-/* Enhanced Video Container */
 .lecture-video {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     transition: all 0.4s var(--animation-bounce);
@@ -131,7 +122,6 @@
     box-shadow: var(--box-shadow-hover);
 }
 
-/* Enhanced Links */
 .questions-list li a,
 .additional-section ul li a {
     position: relative;
@@ -157,7 +147,6 @@
     transform: scaleX(1);
     transform-origin: left;
 }
-/* Enhanced Loading States */
 .loading-state {
     animation: pulse 1.5s infinite;
 }
@@ -168,7 +157,6 @@
     100% { opacity: 0.6; }
 }
 
-/* Enhanced Button Styles */
 .action-button {
     background: var(--color-gradient-1);
     transition: all 0.3s var(--animation-bounce);
@@ -199,7 +187,6 @@
     height: 300%;
 }
 
-/* Card Hover Effects */
 .card-hover {
     transition: all 0.4s var(--animation-bounce);
     transform-style: preserve-3d;
@@ -212,7 +199,6 @@
         5px 5px 15px rgba(0, 0, 0, 0.4);
 }
 
-/* Scroll Bar Styling */
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -229,13 +215,11 @@
 ::-webkit-scrollbar-thumb:hover {
     background: var(--color-gradient-1);
 }
-/* Enhanced Focus States */
 *:focus {
     outline: none;
     box-shadow: 0 0 0 2px var(--color-accent);
 }
 
-/* Enhanced Error States */
 .error-state {
     animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
@@ -247,7 +231,6 @@
     40%, 60% { transform: translateX(1px); }
 }
 
-/* Enhanced Success States */
 .success-state {
     animation: successPop 0.4s var(--animation-bounce);
 }
@@ -258,7 +241,6 @@
     100% { transform: scale(1); }
 }
 
-/* Enhanced Card Flip Animation */
 .flip-card {
     transition: transform 0.6s;
     transform-style: preserve-3d;
@@ -268,12 +250,10 @@
     transform: rotateY(180deg);
 }
 
-/* Enhanced Text Selection */
 ::selection {
     background: var(--color-accent);
     color: var(--color-text);
 }
-/* Rotating Plus Icon Animation */
 .lecture-toggle-icon {
     transition: transform 0.4s var(--animation-bounce);
 }
@@ -281,7 +261,6 @@
 .lecture-expanded .lecture-toggle-icon {
     transform: rotate(45deg);
 }
-/* Enhanced Tooltip */
 .tooltip {
     position: relative;
     opacity: 0;
@@ -294,7 +273,6 @@
     transform: translateY(0);
 }
 
-/* Glowing Effect */
 .glow-effect {
     position: relative;
 }
@@ -314,7 +292,6 @@
     opacity: 0.5;
 }
 
-/* Ripple Effect */
 .ripple {
     position: relative;
     overflow: hidden;
@@ -327,7 +304,6 @@
     }
 }
 
-/* Floating Animation */
 .floating {
     animation: float 3s ease-in-out infinite;
 }
@@ -338,7 +314,6 @@
     100% { transform: translateY(0px); }
 }
 
-/* Skeleton Loading */
 .skeleton {
     background: linear-gradient(
         90deg,

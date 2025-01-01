@@ -1,22 +1,18 @@
-// Sections.js
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import "./Sections.css";
 
 function Sections() {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
-  // Handler for Algorithms button click
   const handleAlgorithmsClick = () => {
     navigate("/schedule-planner", { state: { section: "Algorithms" } });
   };
 
-  // Handler for Data Structures button click (Optional)
   const handleDataStructuresClick = () => {
     navigate("/schedule-planner", { state: { section: "Data Structures" } });
   };
 
-  // Handler for Machine Learning button click (Optional)
   const handleMachineLearningClick = () => {
     navigate("/schedule-planner", { state: { section: "Machine Learning" } });
   };
