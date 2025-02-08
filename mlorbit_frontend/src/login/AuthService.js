@@ -10,7 +10,7 @@ import {
   browserLocalPersistence,
   browserSessionPersistence,
 } from "firebase/auth";
-import { auth } from "./firebaseConfig";
+import { auth } from "./firebaseConfig"; // Firebase Auth instance
 
 /**
  * Logs in a user using email and password with optional session persistence.
