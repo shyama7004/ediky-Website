@@ -1,69 +1,164 @@
+:root {
+  --bg-card:       #f8f9fa;
+  --text-main:     #343a40;
+  --text-muted:    #6c757d;
+  --primary:       #007bff;
+  --primary-dark:  #0056b3;
+  --shadow-light:  rgba(0, 0, 0, 0.08);
+  --shadow-med:    rgba(0, 0, 0, 0.12);
+  --radius:        0.75rem;
+  --space-lg:      4rem;
+  --space-md:      2rem;
+  --space-sm:      1rem;
+  --tiltX:         0;
+  --tiltY:         0;
+  --transition:    0.3s ease-out;
+}
+
+/* Card container */
 .welcome-section {
-  background-color: var(--card-bg-color, #f8f9fa);
-  color: var(--text-color, #333);
-  padding: 4rem 1.5rem;
-  margin: 2rem auto;
+  position: relative;
+  background: var(--bg-card);
+  color: var(--text-main);
+  padding: var(--space-lg) var(--space-sm);
+  margin: var(--space-md) auto;
   max-width: 900px;
   text-align: center;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px var(--shadow-med);
+  transform: 
+    perspective(800px) 
+    rotateX(var(--tiltX)deg) 
+    rotateY(var(--tiltY)deg);
+  transition: transform var(--transition), box-shadow var(--transition);
 }
-
 .welcome-section:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 32px var(--shadow-med);
 }
 
-.welcome-gif {
-  max-width: 220px;
-  height: auto;
-  margin-bottom: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
+/* Shimmer effect */
+.welcome-section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 40%; height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.15),
+    transparent
+  );
+  transform: skewX(-20deg);
+}
+.welcome-section:hover::before {
+  animation: shimmer 1.2s forwards;
+}
+@keyframes shimmer {
+  to { left: 100%; }
 }
 
-.welcome-gif:hover {
-  transform: scale(1.05);
+/* Title & cursor */
+.welcome-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  transition: transform var(--transition), color var(--transition);
 }
-
-.button-group .btn {
-  margin-right: 10px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+.welcome-title:hover {
+  color: var(--primary);
+  transform: scale(1.03);
 }
-
-.button-group .btn:hover {
-  transform: translateY(-2px);
-}
-
-.button-group .btn:active {
-  transform: translateY(1px);
-}
-
 .blinking-cursor {
   display: inline-block;
-  margin-left: 4px;
   animation: blink 0.7s infinite;
   font-weight: bold;
 }
-
 @keyframes blink {
-  0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
 
-.welcome-title {
-  font-size: 2.8rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: var(--text-color, #343a40);
-  position: relative;
-  transition: color 0.3s ease;
+/* Floating GIF */
+.welcome-gif {
+  max-width: 220px;
+  width: 100%;
+  margin: var(--space-md) auto;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px var(--shadow-light);
+  animation: float 6s ease-in-out infinite;
+  transition: transform var(--transition);
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-8px); }
+}
+.welcome-gif:hover {
+  animation-play-state: paused;
+  transform: scale(1.05);
 }
 
-.welcome-title:hover {
-  color: var(--primary-color, #007bff);
+/* Buttons */
+.button-group {
+  display: inline-flex;
+  gap: 0.75rem;
+}
+.btn {
+  position: relative;
+  overflow: hidden;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), transform var(--transition);
+  text-decoration: none;
+}
+.btn-primary {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+.btn-primary:hover {
+  background: var(--primary);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.btn-outline-dark {
+  border: 2px solid var(--text-main);
+  color: var(--text-main);
+}
+.btn-outline-dark:hover {
+  background: var(--text-main);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Ripple */
+.btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+}
+@keyframes ripple {
+  to { transform: scale(4); opacity: 0; }
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* Subtext */
+.welcome-subtext {
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .welcome-section {
+    padding: var(--space-md) var(--space-sm);
+    margin: var(--space-md) var(--space-sm);
+  }
+  .welcome-title {
+    font-size: 2.2rem;
+  }
 }
