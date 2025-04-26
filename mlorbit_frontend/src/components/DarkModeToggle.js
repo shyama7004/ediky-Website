@@ -1,41 +1,46 @@
 import React, { useEffect, useState } from 'react';
 
-function DarkModeToggle() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+export default function DarkModeToggle() {
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem('theme');
+    return saved
+      ? (saved === 'dark')
+      : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+
+  // Apply theme class + persist
+  useEffect(() => {
+    document.body.classList.toggle('dark-mode', isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }, [isDark]);
 
   useEffect(() => {
-    const savedPreference = localStorage.getItem('theme');
-    if (savedPreference) {
-      setIsDarkMode(savedPreference === 'dark');
-    } else {
-      const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setIsDarkMode(prefersDarkScheme);
-    }
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const handler = e => {
+      const stored = localStorage.getItem('theme');
+      if (!stored) setIsDark(e.matches);
+    };
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
   }, []);
 
-  useEffect(() => {
-    document.body.classList.toggle('dark-mode', isDarkMode);
-    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-  }, [isDarkMode]);
+  const handleClick = () => {
+    setIsDark(d => !d);
 
-  const handleToggle = () => {
-    setIsDarkMode((prev) => !prev);
+    // optional icon spin
+    const btn = document.getElementById('dark-toggle-btn');
+    btn.classList.add('spin');
+    setTimeout(() => btn.classList.remove('spin'), 600);
   };
 
   return (
     <button
-      onClick={handleToggle}
+      id="dark-toggle-btn"
+      onClick={handleClick}
       className="dark-mode-toggle"
-      aria-pressed={isDarkMode}
-      title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
     >
-      {isDarkMode ? (
-        <i className="fas fa-sun"></i>
-      ) : (
-        <i className="fas fa-moon"></i>
-      )}
+      <i className={`fas fa-${isDark ? 'moon' : 'sun'}`}></i>
     </button>
   );
 }
-
-export default DarkModeToggle;
