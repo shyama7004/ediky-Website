@@ -14,7 +14,6 @@ export default function DarkModeToggle() {
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
   }, [isDark]);
 
-  // Listen for system changes (optional)
   useEffect(() => {
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
     const handler = e => {
