@@ -79,7 +79,6 @@ body.dark-mode {
   color: var(--moon-color);
 }
 
-/* spin animation if you still want it */
 .dark-mode-toggle.spin .fas {
   transition: transform 0.6s var(--tr-ease);
   transform: rotate(360deg);
