@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/logo.jpg";
-import ThemeToggle from "./ThemeToggle";
 import "./Navbar.css";
 import { UserContext } from "../context/UserContext";
 import { auth } from "../login/firebaseConfig";
@@ -166,25 +165,7 @@ function Navbar() {
               )}
             </li>
           </ul>
-
-          <form
-            className="navbar-search ms-lg-3 mt-3 mt-lg-0"
-            role="search"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <input
-              type="search"
-              placeholder="Search tutorials..."
-              aria-label="Search"
-            />
-            <button type="submit">
-              <i className="fas fa-search"></i> Search
-            </button>
-          </form>
-
-          <div className="ms-3">
-            <ThemeToggle />
-          </div>
+          {/* Search form and ThemeToggle removed */}
         </div>
       </div>
     </nav>

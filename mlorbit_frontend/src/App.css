@@ -2,7 +2,7 @@
   border: none;
   transition: all 0.3s ease-in-out;
   overflow: hidden;
-  background: #ffffff;
+  background: #000000;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -26,7 +26,7 @@
 .card-title {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #2d3436;
+  color: #000000;
   margin: 12px 0;
   line-height: 1.4;
 }

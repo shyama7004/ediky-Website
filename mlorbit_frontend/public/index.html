@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
   <!-- Character Encoding -->
   <meta charset="utf-8" />
   <!-- Favicon -->
   <link rel="icon" href="%PUBLIC_URL%/assets/logo.jpg" />
-  <!-- Viewport for Responsive Design -->
+  <!-- Responsive Meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Theme Color -->
+  <!-- Mobile Browser Theme Color -->
   <meta name="theme-color" content="#000000" />
-  <!-- SEO Description -->
-  <meta name="description"
-    content="MLOrbit - Explore free Algorithm Notes, Tutorials, and Machine Learning Resources" />
-  <!-- Social Media Preview (Open Graph) -->
+  <!-- SEO -->
+  <meta name="description" content="MLOrbit - Explore free Algorithm Notes, Tutorials, and Machine Learning Resources" />
+  <!-- Open Graph Preview -->
   <meta property="og:title" content="MLOrbit" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <meta property="og:description" content="Explore free Algorithm Notes, Tutorials, and Machine Learning Resources." />
   <meta property="og:image" content="%PUBLIC_URL%/assets/logo.jpg" />
   <meta property="og:url" content="https://your-site-url.com" />
@@ -24,15 +22,60 @@
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/assets/logo.jpg" />
   <!-- Web App Manifest -->
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <!-- Preload Logo -->
+  <link rel="preload" href="%PUBLIC_URL%/assets/logo.jpg" as="image" />
+
+  <!-- Splash‑Cursor CSS -->
+  <link rel="stylesheet" href="%PUBLIC_URL%/splash-cursor.css" />
+
   <!-- Title -->
   <title>MLOrbit - Algorithms and Machine Learning Hub</title>
-  <!-- Preload Assets for Better Performance -->
-  <link rel="preload" href="%PUBLIC_URL%/assets/logo.jpg" as="image" />
+
+  <!-- Dark‑theme CSS vars & immediate background fix -->
+  <style>
+    :root[data-theme="dark"] {
+      --bg-color: #000 !important;
+      --bs-body-bg: #000 !important;
+      --text-color: #fff !important;
+      --bs-body-color: #fff !important;
+      --dropdown-bg: #000 !important;
+      --dropdown-hover-bg: #111 !important;
+      --active-dropdown-bg: #111 !important;
+      --active-dropdown-color: #66b2ff !important;
+      --brand-color: #fff !important;
+      --nav-link-hover: #66b2ff !important;
+    }
+    html[data-theme="dark"], body, #root {
+      background-color: var(--bg-color) !important;
+      color: var(--text-color) !important;
+    }
+    body.bg-white, #root.bg-white {
+      background-color: var(--bg-color) !important;
+    }
+  </style>
+
+  <!-- Enforce dark classes before React mounts -->
+  <script>
+    document.documentElement.setAttribute('data-theme','dark');
+    document.body.classList.remove('bg-white');
+    document.body.classList.add('bg-dark','text-light');
+    document.getElementById('root')?.classList.add('bg-dark','text-light');
+  </script>
 </head>
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
+
+  <!-- Hidden dithering image for the fluid shader -->
+  <img id="dithering" src="%PUBLIC_URL%/dithering.png" alt="" style="display:none" />
+
+  <!-- React root -->
+  <div id="root" class="bg-dark text-light"></div>
+
+  <!-- Splash‑Cursor runtime -->
+  <script src="%PUBLIC_URL%/splash-cursor.js" defer></script>
 </body>
 
 </html>

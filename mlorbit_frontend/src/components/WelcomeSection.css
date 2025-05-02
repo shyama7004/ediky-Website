@@ -1,69 +1,69 @@
 .welcome-section {
-  background-color: var(--card-bg-color, #f8f9fa);
-  color: var(--text-color, #333);
-  padding: 4rem 1.5rem;
-  margin: 2rem auto;
-  max-width: 900px;
-  text-align: center;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem 1rem;      /* less vertical padding */
+  margin: 1.5rem auto;     /* slightly tighter margins */
+  background: #000;         /* solid black background */
+  box-shadow: none;
+  border-radius: 0;
+  transition: none;
 }
 
 .welcome-section:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+  transform: none;
+  box-shadow: none;
 }
 
-.welcome-gif {
-  max-width: 220px;
-  height: auto;
-  margin-bottom: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
-}
-
-.welcome-gif:hover {
-  transform: scale(1.05);
-}
-
-.button-group .btn {
-  margin-right: 10px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.button-group .btn:hover {
-  transform: translateY(-2px);
-}
-
-.button-group .btn:active {
-  transform: translateY(1px);
+.welcome-title {
+  text-align: center;
+  color: #fff;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  min-height: 3rem;
 }
 
 .blinking-cursor {
   display: inline-block;
   margin-left: 4px;
-  animation: blink 0.7s infinite;
-  font-weight: bold;
+  width: 2px;
+  background-color: #2f80ed;
+  animation: blink 1s step-start infinite;
 }
-
 @keyframes blink {
-  0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
 
-.welcome-title {
-  font-size: 2.8rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: var(--text-color, #343a40);
-  position: relative;
-  transition: color 0.3s ease;
+.welcome-subtext {
+  text-align: center;
+  color: #ddd;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
 }
 
-.welcome-title:hover {
-  color: var(--primary-color, #007bff);
+.button-group {
+  text-align: center;
+}
+.button-group .btn {
+  margin: 0 0.5rem;
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background-color: #2f80ed;
+  border: none;
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: #1c6ed9;
+}
+
+.btn-outline-light {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+}
+.btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
