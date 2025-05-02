@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./WelcomeSection.css";
-import giphy from "../assets/giphy.gif";
+import AsciiThreeText from "./AsciiThreeText";
 
-function WelcomeSection() {
+export default function WelcomeSection() {
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [index, setIndex] = useState(0);
+
   const fullText = "Welcome to MLOrbit";
   const typingSpeed = 200;
   const deletingSpeed = 150;
@@ -13,7 +14,7 @@ function WelcomeSection() {
   const pauseBeforeRetype = 500;
 
   useEffect(() => {
-    const typingEffect = () => {
+    const handleType = () => {
       if (!isDeleting) {
         if (index < fullText.length) {
           setText((prev) => prev + fullText[index]);
@@ -32,33 +33,36 @@ function WelcomeSection() {
     };
 
     const timer = setTimeout(
-      typingEffect,
+      handleType,
       isDeleting ? deletingSpeed : typingSpeed
     );
-
     return () => clearTimeout(timer);
   }, [text, isDeleting, index]);
 
   return (
     <div className="welcome-section">
-      <img src={giphy} alt="Welcome GIF" className="welcome-gif" />
+
+      {/* ASCII headline */}
+      <div className="ascii-title">
+        <AsciiThreeText text="MLOrbit" asciiFontSize={8} enableWaves={true} />
+      </div>
       <h1 className="welcome-title">
         {text}
         <span className="blinking-cursor">|</span>
       </h1>
+
       <p className="welcome-subtext">
         Browse free Algorithm Notes, tutorials, and explore programming!
       </p>
+
       <div className="button-group">
         <a href="#courses" className="btn btn-primary">
           Free Notes
         </a>
-        <a href="/explore-ml" className="btn btn-outline-dark">
+        <a href="/explore-ml" className="btn btn-outline-light">
           Explore ML
         </a>
       </div>
     </div>
   );
 }
-
-export default WelcomeSection;
