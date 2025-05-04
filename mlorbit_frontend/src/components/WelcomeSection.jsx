@@ -57,10 +57,10 @@ export default function WelcomeSection() {
 
       <div className="button-group">
         <a href="#courses" className="btn btn-primary">
-          Free Notes
+          Handwritten Notes
         </a>
         <a href="/explore-ml" className="btn btn-outline-light">
-          Explore ML
+          Typed Notes
         </a>
       </div>
     </div>

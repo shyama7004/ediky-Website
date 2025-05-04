@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
-import logo from "../assets/logo.jpg";
 import "./Navbar.css";
 import { UserContext } from "../context/UserContext";
 import { auth } from "../login/firebaseConfig";
@@ -31,14 +30,7 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg shadow-sm">
       <div className="container">
         <Link className="navbar-brand fw-bold d-flex align-items-center" to="/">
-          <img
-            src={logo}
-            alt="Logo"
-            width="40"
-            height="40"
-            className="d-inline-block me-2"
-          />
-          MLOrbit
+          <h3>MLOrbit</h3>
         </Link>
 
         <button
