@@ -1,14 +1,7 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import sections from "../docViewer/sections.json"; // src/docViewer/sections.json
 import "./button.css";
-
-const topics = [
-  "Machine Learning",
-  "Deep Learning",
-  "Natural Language Processing",
-  "Reinforcement Learning",
-];
-
-
 
 const StarBorder = ({
   as: Component = "button",
@@ -26,29 +19,40 @@ const StarBorder = ({
           background: `radial-gradient(circle, ${color}, transparent 5%)`,
           animationDuration: speed,
         }}
-      ></div>
+      />
       <div
         className="border-gradient-top"
         style={{
           background: `radial-gradient(circle, ${color}, transparent 10%)`,
           animationDuration: speed,
         }}
-      ></div>
+      />
       <div className="inner-content">{children}</div>
     </Component>
   );
 };
 
-const StarButtons = () => {
+export default function StarButtons() {
+  const navigate = useNavigate();
+
   return (
     <div className="star-buttons-wrapper">
-      {topics.map((topic) => (
-        <StarBorder key={topic} color="cyan" speed="5s">
-          {topic}
-        </StarBorder>
-      ))}
+      {sections.map((sec) => {
+        // navigate to the first topic of each section:
+        const firstTopic = sec.topics[0]?.slug || "index";
+        return (
+          <StarBorder
+            key={sec.slug}
+            as="button"
+            className="topic-btn"
+            color="cyan"
+            speed="5s"
+            onClick={() => navigate(`/docs/${sec.slug}/${firstTopic}`)}
+          >
+            {sec.label}
+          </StarBorder>
+        );
+      })}
     </div>
   );
-};
-
-export default StarButtons;
+}

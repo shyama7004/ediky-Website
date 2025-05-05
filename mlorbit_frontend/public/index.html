@@ -11,8 +11,9 @@
   <!-- Mobile Browser Theme Color -->
   <meta name="theme-color" content="#000000" />
   <!-- SEO -->
-  <meta name="description" content="MLOrbit - Explore free Algorithm Notes, Tutorials, and Machine Learning Resources" />
-  <!-- Open Graph Preview -->
+  <meta name="description"
+    content="MLOrbit - Explore free Algorithm Notes, Tutorials, and Machine Learning Resources" />
+  <!-- Open Graph Preview -->
   <meta property="og:title" content="MLOrbit" />
   <meta property="og:description" content="Explore free Algorithm Notes, Tutorials, and Machine Learning Resources." />
   <meta property="og:image" content="%PUBLIC_URL%/assets/logo.jpg" />
@@ -27,13 +28,13 @@
   <!-- Preload Logo -->
   <link rel="preload" href="%PUBLIC_URL%/assets/logo.jpg" as="image" />
 
-  <!-- Splash‑Cursor CSS -->
+  <!-- Splash-Cursor CSS -->
   <link rel="stylesheet" href="%PUBLIC_URL%/splash-cursor.css" />
 
   <!-- Title -->
   <title>MLOrbit - Algorithms and Machine Learning Hub</title>
 
-  <!-- Dark‑theme CSS vars & immediate background fix -->
+  <!-- Dark-theme CSS vars & immediate background fix -->
   <style>
     :root[data-theme="dark"] {
       --bg-color: #000 !important;
@@ -47,21 +48,29 @@
       --brand-color: #fff !important;
       --nav-link-hover: #66b2ff !important;
     }
-    html[data-theme="dark"], body, #root {
+
+    html[data-theme="dark"],
+    body,
+    #root {
       background-color: var(--bg-color) !important;
       color: var(--text-color) !important;
     }
-    body.bg-white, #root.bg-white {
+
+    body.bg-white,
+    #root.bg-white {
       background-color: var(--bg-color) !important;
     }
   </style>
 
+  <!-- Load Pyodide as a global script so CRA build won’t break -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+
   <!-- Enforce dark classes before React mounts -->
   <script>
-    document.documentElement.setAttribute('data-theme','dark');
+    document.documentElement.setAttribute('data-theme', 'dark');
     document.body.classList.remove('bg-white');
-    document.body.classList.add('bg-dark','text-light');
-    document.getElementById('root')?.classList.add('bg-dark','text-light');
+    document.body.classList.add('bg-dark', 'text-light');
+    document.getElementById('root')?.classList.add('bg-dark', 'text-light');
   </script>
 </head>
 
@@ -74,7 +83,7 @@
   <!-- React root -->
   <div id="root" class="bg-dark text-light"></div>
 
-  <!-- Splash‑Cursor runtime -->
+  <!-- Splash-Cursor runtime -->
   <script src="%PUBLIC_URL%/splash-cursor.js" defer></script>
 </body>
 

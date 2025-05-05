@@ -1,0 +1,32 @@
+/* making content fill full width in single column */
+.docs-main-content {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+/* hide old layout elements */
+.docs-center,
+.docs-right {
+    display: none !important;
+}
+
+/* make text container take full width */
+.docs-main-content .highlightable-text-container {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* markdown container styles if needed */
+.docs-main-content .markdown-container {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}

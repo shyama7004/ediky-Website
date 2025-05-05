@@ -20,6 +20,7 @@ import Login from "./login/LoginPage";
 import Algorithms from "./pages/Algorithms";
 import DataStructures from "./pages/DataStructures";
 import MachineLearning from "./pages/MachineLearning";
+import { DocsRoutes } from "./pages/DocsPage";
 import ExploreML from "./ExploreML/ExploreML";
 import AdvancedPDFViewer from "./ExploreML/AdvancedPDFViewer";
 import SchedulePlanner from "./schedulePlanner/SchedulePlanner";
@@ -136,6 +137,7 @@ function App() {
           <Route path="/machine-learning" element={<MachineLearning />} />
           <Route path="/explore-ml" element={<ExploreML />} />
           <Route path="/view-pdf" element={<AdvancedPDFViewer />} />
+          <Route path="/docs/*" element={<DocsRoutes />} />
 
           {/* Protected Routes */}
           <Route

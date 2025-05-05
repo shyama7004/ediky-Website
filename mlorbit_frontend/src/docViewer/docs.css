@@ -1,0 +1,237 @@
+/* ---------- LAYOUT -------------------------------------------------- */
+
+.docs-layout {
+    /* base layout with sidebar and main content */
+    display: flex;
+    min-height: 100vh;
+    background: #000;
+    /* consistent dark background */
+    color: #e4e4e4;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* ---------- SIDEBAR ------------------------------------------------- */
+
+.docs-sidebar {
+    /* fixed-width vertical sidebar */
+    width: 260px;
+    background: #0d1117;
+    /* github-style dark */
+    padding: 1.5rem 1rem;
+    overflow-y: auto;
+    border-right: 1px solid #161b22;
+}
+
+.sidebar-title {
+    /* title at top of sidebar */
+    color: #fff;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.sidebar-list,
+.sidebar-list ul {
+    /* remove default list styles */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-list>li {
+    margin-bottom: 0.4rem;
+}
+
+.docs-sidebar a {
+    /* sidebar link style */
+    color: #9ecbff;
+    text-decoration: none;
+    display: block;
+    padding: 4px 6px;
+    border-radius: 4px;
+    transition: background 0.15s;
+    font-size: 0.95rem;
+}
+
+.docs-sidebar a:hover {
+    /* highlight link on hover */
+    background: #1d2630;
+}
+
+.docs-sidebar .active {
+    /* active link highlight */
+    background: #238636;
+    color: #fff;
+}
+
+.docs-sidebar ul>li {
+    /* indentation for sub-topics */
+    margin-left: 1.2rem;
+}
+
+/* ---------- MAIN CONTENT ------------------------------------------- */
+
+.docs-main {
+    /* right content pane */
+    flex: 1;
+    padding: 2.5rem 3rem;
+    overflow-y: auto;
+    max-width: 900px;
+}
+
+.markdown-body {
+    /* base markdown content styling */
+    line-height: 1.7;
+    word-wrap: break-word;
+}
+
+/* headings */
+.markdown-body h1,
+.markdown-body h2 {
+    color: #58a6ff;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 0.3rem;
+}
+
+.markdown-body h3,
+.markdown-body h4 {
+    color: #79c0ff;
+    margin-top: 1.6rem;
+    margin-bottom: 0.8rem;
+}
+
+/* lists & paragraphs */
+.markdown-body p {
+    margin: 1em 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+    margin-left: 1.5em;
+}
+
+/* code blocks & inline code */
+.markdown-body pre {
+    background: #161b22;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+}
+
+.markdown-body code {
+    background: #161b22;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+/* tables */
+.markdown-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.2rem 0;
+}
+
+.markdown-body th,
+.markdown-body td {
+    border: 1px solid #30363d;
+    padding: 0.6rem;
+}
+
+.markdown-body th {
+    background: #21262d;
+}
+
+/* ---------- HIGHLIGHTS --------------------------------------------- */
+
+mark.hl {
+    /* text highlight effect */
+    background: #fff70066;
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
+/* ---------- PLAYGROUND --------------------------------------------- */
+
+.playground {
+    /* wrapper for the interactive code playground */
+    margin-top: 3rem;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.playground header {
+    /* playground header bar with controls */
+    background: #161b22;
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+}
+
+.playground header select,
+.playground header button {
+    /* style for dropdowns and buttons in header */
+    font-size: 0.85rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    border: 1px solid #30363d;
+    background: #0d1117;
+    color: #e4e4e4;
+}
+
+.playground header button:hover {
+    background: #238636;
+    border-color: #238636;
+    cursor: pointer;
+}
+
+.output {
+    /* terminal-like output below playground */
+    background: #0d1117;
+    color: #00e676;
+    padding: 0.75rem 1rem;
+    font-family: "Source Code Pro", monospace;
+    font-size: 0.85rem;
+    min-height: 2rem;
+    white-space: pre-wrap;
+}
+
+/* ---------- SPEECH CONTROL BAR ------------------------------------- */
+
+.speech-box {
+    /* fixed-position speech control at bottom right */
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+}
+
+.speech-box select,
+.speech-box input[type=range],
+.speech-box button {
+    /* styling for input controls in speech bar */
+    background: #161b22;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    font-size: 0.85rem;
+    border-radius: 4px;
+}
+
+.speech-box button {
+    padding: 0 0.8rem;
+}
+
+.speech-box button:hover {
+    background: #238636;
+    border-color: #238636;
+    cursor: pointer;
+}

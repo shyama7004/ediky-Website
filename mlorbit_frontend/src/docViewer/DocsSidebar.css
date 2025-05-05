@@ -1,0 +1,177 @@
+/* ---------- CSS variables for consistent theming ---------- */
+:root {
+    --sidebar-bg: rgba(0, 0, 0, 0.8);
+    /* dark translucent bg */
+    --sidebar-text: #fff;
+    /* default sidebar text color */
+    --sidebar-hover: rgba(255, 255, 255, 0.1);
+    /* hover background */
+    --sidebar-active-bg: #fff;
+    /* active link bg */
+    --sidebar-active-text: #000;
+    /* active link text color */
+    --sidebar-border: rgba(255, 255, 255, 0.2);
+    /* border line color */
+    --sidebar-width: 240px;
+    /* full sidebar width */
+    --sidebar-collapsed-width: 40px;
+    /* collapsed sidebar width */
+    --transition-speed: 0.2s;
+    /* transition timing */
+    --font-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ---------- main sidebar container ---------- */
+.docs-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: var(--sidebar-width);
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    display: flex;
+    flex-direction: column;
+    transition: width var(--transition-speed) ease;
+    backdrop-filter: blur(8px);
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    font-family: var(--font-base);
+}
+
+/* ---------- collapsed sidebar styles ---------- */
+.docs-sidebar.collapsed {
+    width: var(--sidebar-collapsed-width);
+    overflow: hidden;
+    /* hides content inside */
+}
+
+/* ---------- ensures only vertical content is hidden ---------- */
+.docs-sidebar.collapsed {
+    overflow-x: visible;
+    overflow-y: hidden;
+}
+
+/* ---------- makes the top of the sidebar positionable ---------- */
+.sidebar-header {
+    position: relative;
+}
+
+/* ---------- position the toggle button outside the sidebar when collapsed ---------- */
+.docs-sidebar.collapsed .toggle-btn {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    margin-left: -16px;
+    /* keeps part of it inside the edge */
+    z-index: 1001;
+}
+
+/* ---------- box holding the toggle icon/title ---------- */
+.sidebar-header-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* ---------- the toggle button itself ---------- */
+.toggle-btn {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    color: #000;
+    border: 1px solid var(--sidebar-border);
+    border-radius: 4px;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background var(--transition-speed), transform var(--transition-speed);
+}
+
+/* ---------- toggle label spacing ---------- */
+.toggle-btn .btn-label {
+    margin-left: 0.4rem;
+    font-weight: 500;
+}
+
+/* ---------- button hover feedback ---------- */
+.toggle-btn:hover {
+    background: #f5f5f5;
+    transform: scale(1.03);
+}
+
+/* ---------- main scrollable area of the sidebar ---------- */
+.sidebar-nav {
+    flex: 1;
+    overflow-y: auto;
+    padding-top: 0.5rem;
+}
+
+/* ---------- scrollbar styling ---------- */
+.sidebar-nav::-webkit-scrollbar {
+    width: 4px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+    background: var(--sidebar-active-bg);
+    border-radius: 2px;
+}
+
+/* ---------- section divider inside sidebar ---------- */
+.section {
+    border-bottom: 1px solid var(--sidebar-border);
+}
+
+/* ---------- section heading row (clickable to expand/collapse) ---------- */
+.section-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background var(--transition-speed);
+}
+
+/* ---------- section hover & open state styling ---------- */
+.section-title-row:hover,
+.section-title-row.open {
+    background: var(--sidebar-hover);
+}
+
+/* ---------- section label (left-aligned title text) ---------- */
+.section-label {
+    font-weight: 600;
+}
+
+/* ---------- topic list inside each section ---------- */
+.topic-list {
+    list-style: none;
+    margin: 0;
+    padding: 0.25rem 0;
+}
+
+/* ---------- individual topic links ---------- */
+.topic-list li a {
+    display: block;
+    padding: 0.6rem 1.5rem;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background var(--transition-speed), padding-left var(--transition-speed);
+}
+
+/* ---------- hover effect for topic links ---------- */
+.topic-list li a:hover {
+    background: var(--sidebar-hover);
+    padding-left: 1.75rem;
+}
+
+/* ---------- active link styles ---------- */
+.topic-list li a.active {
+    background: var(--sidebar-active-bg);
+    color: var(--sidebar-active-text);
+    font-weight: 600;
+}
