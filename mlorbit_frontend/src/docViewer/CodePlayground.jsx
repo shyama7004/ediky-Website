@@ -42,15 +42,27 @@ export default function CodePlayground() {
 
     // initialize pyodide and install necessary packages
     const initPyodide = useCallback(async () => {
-        setLoading(true); setError(''); setOutput('Loading Pyodide…');
+        setLoading(true);
+        setError('');
+        setOutput('Loading Pyodide…');
         try {
-            const m = await import('https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.mjs');
-            const py = await m.loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.23.4/full/' });
-            await py.loadPackage(['numpy', 'scipy', 'scikit-learn', 'pandas', 'micropip']);
-            setPyodide(py); setOutput('');
+            const py = await window.loadPyodide({
+                indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.23.4/full/'
+            });
+            // ensure core packages plus matplotlib & micropip
+            await py.loadPackage(['numpy', 'scipy', 'scikit-learn', 'pandas', 'matplotlib', 'micropip']);
+            // install seaborn via micropip
+            await py.runPythonAsync(`
+import micropip
+await micropip.install("seaborn")
+`);
+            setPyodide(py);
+            setOutput('');
         } catch (e) {
             setError(e.message);
-        } finally { setLoading(false); }
+        } finally {
+            setLoading(false);
+        }
     }, []);
     useEffect(() => { initPyodide(); }, [initPyodide]);
 
@@ -60,7 +72,9 @@ export default function CodePlayground() {
     // run code (either .py or .ipynb)
     const runCode = async () => {
         if (!pyodide) return setError('⚠️ Pyodide still loading…');
-        setLoading(true); setError(''); setOutput('');
+        setLoading(true);
+        setError('');
+        setOutput('');
         const { name, code: raw } = files[activeIdx];
         const fullCode = extractNotebookCode(name, raw);
 
@@ -91,7 +105,9 @@ _buf.getvalue()`;
 
     // create a new file (either .py or .ipynb based on existing ones)
     const addFile = () => {
-        const defaultName = files.length === 0 ? 'playground.py' : `file${files.length + 1}${files.some(f => f.name.endsWith('.ipynb')) ? '.ipynb' : '.py'}`;
+        const defaultName = files.length === 0
+            ? 'playground.py'
+            : `file${files.length + 1}${files.some(f => f.name.endsWith('.ipynb')) ? '.ipynb' : '.py'}`;
         const name = window.prompt('File name:', defaultName);
         if (!name) return;
         setFiles(f => [...f, { name, code: name.endsWith('.ipynb') ? '{"cells":[]}' : '' }]);
@@ -176,8 +192,10 @@ _buf.getvalue()`;
                     <div className="playground" style={{ top: pos.y, left: pos.x }}>
                         {/* draggable code editor header */}
                         <div className="vs-code-header"
-                            onMouseDown={e => setDragOffset({ x: e.clientX - pos.x, y: e.clientY - pos.y })}
-                        >
+                            onMouseDown={e => setDragOffset({
+                                x: e.clientX - pos.x, y: e.clientY -
+                                    pos.y
+                            })}>
                             {/* tab bar with file names */}
                             <div className="vs-tabs">
                                 {files.map((f, i) => (
