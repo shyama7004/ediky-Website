@@ -1,0 +1,35 @@
+[
+    {
+      "label": "Machine Learning",
+      "slug": "machine-learning",
+      "topics": [
+        { "label": "Intro", "slug": "index" },
+        { "label": "Regression", "slug": "regression" },
+        { "label": "Classification", "slug": "classification" }
+      ]
+    },
+    {
+      "label": "Deep Learning",
+      "slug": "deep-learning",
+      "topics": [
+        { "label": "Intro", "slug": "index" },
+        { "label": "CNNs", "slug": "cnns" },
+        { "label": "RNNs", "slug": "rnns" }
+      ]
+    },
+    {
+      "label": "Natural Language Processing",
+      "slug": "natural-language-processing",
+      "topics": [
+        { "label": "Intro", "slug": "index" },
+        { "label": "Tokenisation", "slug": "tokenisation" }
+      ]
+    },
+    {
+      "label": "Reinforcement Learning",
+      "slug": "reinforcement-learning",
+      "topics": [
+        { "label": "Intro", "slug": "index" }
+      ]
+    }
+  ]

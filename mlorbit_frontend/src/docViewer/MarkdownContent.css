@@ -1,0 +1,76 @@
+/* ---------- MarkdownContent.css ---------- */
+
+/* enable text selection in entire markdown container and children */
+.markdown-container,
+.markdown-container * {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+}
+
+/* selection style for highlighted text */
+.markdown-container ::selection {
+    background: rgba(255, 255, 255, 0.25);
+    color: inherit;
+}
+
+.markdown-container * ::selection {
+    background: rgba(255, 255, 255, 0.25);
+    color: inherit;
+}
+
+/* ---------- layout container for markdown ---------- */
+.markdown-container {
+    padding: 1rem;
+    overflow-x: auto;
+    flex: 1 1 auto;
+    /* let it grow/shrink inside flex parent */
+    width: 100%;
+    max-width: none;
+    /* allow full width */
+}
+
+/* ---------- actual markdown-rendered content ---------- */
+.markdown-body {
+    color: #ddd;
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    width: 100%;
+    max-width: none;
+}
+
+/* ---------- headings ---------- */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3 {
+    color: #fff;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ---------- paragraphs ---------- */
+.markdown-body p {
+    margin: 1rem 0;
+}
+
+/* ---------- unordered and ordered lists ---------- */
+.markdown-body ul,
+.markdown-body ol {
+    margin: 1rem 0 1rem 1.5rem;
+}
+
+/* ---------- anchor tags ---------- */
+.markdown-body a {
+    color: #4ea1f7;
+    text-decoration: underline;
+}
+
+/* ---------- inline code and code blocks ---------- */
+.markdown-body pre,
+.markdown-body code {
+    background: #111;
+    padding: 0.5rem;
+    border-radius: 4px;
+    overflow-x: auto;
+}
