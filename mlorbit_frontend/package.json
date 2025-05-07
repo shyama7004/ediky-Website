@@ -7,13 +7,13 @@
     "node": ">=20.0.0"
   },
   "dependencies": {
-    "ajv": "^8.12.0",
     "@fortawesome/fontawesome-free": "^6.5.1",
     "@monaco-editor/react": "^4.6.0",
     "@react-pdf-viewer/core": "^3.12.0",
     "@react-pdf-viewer/default-layout": "^3.12.0",
     "@react-pdf-viewer/highlight": "3.11.0",
     "@react-pdf/renderer": "^4.1.6",
+    "ajv": "^8.12.0",
     "axios": "^1.8.2",
     "bootstrap": "^5.3.3",
     "cra-template": "1.2.0",
@@ -43,9 +43,11 @@
     "web-vitals": "^4.2.4"
   },
   "overrides": {
-    "ajv-keywords": "5.1.0",
-    "fork-ts-checker-webpack-plugin>ajv-keywords": "5.1.0",
-    "fork-ts-checker-webpack-plugin>ajv": "^8.12.0"
+    "ajv-keywords": "^5.1.0",
+    "fork-ts-checker-webpack-plugin": {
+      "ajv": "^8.12.0",
+      "ajv-keywords": "^5.1.0"
+    }
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
@@ -61,10 +63,21 @@
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
-    "extends": ["react-app","react-app/jest"]
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
-    "production": [">0.2%","not dead","not op_mini all"],
-    "development": ["last 1 chrome version","last 1 firefox version","last 1 safari version"]
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
