@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-We are committed to maintaining the security of the MLOrbit website. The following versions are currently supported with security updates:
+We are committed to maintaining the security of the Ediky website. The following versions are currently supported with security updates:
 
 | Version | Supported          |
 | ------- | ------------------ |
