@@ -16,8 +16,8 @@ To set up Ediky for local development, follow these steps:
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/MLOrbit/MLOrbit-Website.git
-   cd MLOrbit-Website
+   git clone https://github.com/ediky/ediky-Website.git
+   cd ediky-Website
    ```
 
 2. **Install Dependencies**:

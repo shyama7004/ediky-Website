@@ -1,4 +1,4 @@
-name: mlorbit_backend
+name: ediky_backend
 channels:
   - conda-forge  # Prioritize conda-forge for more up-to-date packages
   - defaults

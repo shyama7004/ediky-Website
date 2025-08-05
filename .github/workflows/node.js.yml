@@ -34,19 +34,19 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        working-directory: ./mlorbit_frontend
+        working-directory: ./ediky_front
         run: npm ci
 
       - name: Lint
-        working-directory: ./mlorbit_frontend
+        working-directory: ./ediky_front
         run: npm run lint
 
       - name: Build
-        working-directory: ./mlorbit_frontend
+        working-directory: ./ediky_front
         run: npm run build --if-present
 
       - name: Test
-        working-directory: ./mlorbit_frontend
+        working-directory: ./ediky_front
         run: npm test -- --watchAll=false
 
   deploy:
@@ -71,4 +71,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./mlorbit_frontend/build
+          publish_dir: ./ediky_front/build
