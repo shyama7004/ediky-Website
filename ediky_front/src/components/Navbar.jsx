@@ -12,7 +12,7 @@ function Navbar() {
   const location = useLocation();
 
   const { user: userCtx, setUser } = useContext(UserContext);
-  const { currentUser } = useAuth(); // live auth source of truth
+  const { currentUser } = useAuth();
   const account = currentUser || userCtx || null;
 
   const [scrolled, setScrolled] = useState(false);
@@ -20,7 +20,6 @@ function Navbar() {
 
   const isHome = location.pathname === "/";
 
-  // Derive initials for fallback avatar
   const initials = useMemo(() => {
     const base =
       account?.displayName ||
@@ -36,14 +35,11 @@ function Navbar() {
       .toUpperCase();
   }, [account, userCtx]);
 
-  // Pick best avatar URL (Auth → providerData → branded logo)
   const avatarUrl = useMemo(() => {
     let url =
       account?.photoURL ||
-      account?.providerData?.[0]?.photoURL || // Google/Firebase providers
+      account?.providerData?.[0]?.photoURL ||
       "";
-
-    // Prefer a cleaner size for Google avatars (s96-c → s256-c)
     if (url.includes("googleusercontent.com")) {
       url = url.replace(/s\d+-c/, "s256-c");
     }
@@ -89,13 +85,11 @@ function Navbar() {
   return (
     <nav className={`app-navbar navbar navbar-expand-lg sticky-top ${scrolled ? "is-scrolled" : ""}`} data-scope="navbar">
       <div className="nav-container container">
-        {/* Brand */}
         <Link className="brand d-flex align-items-center" to="/" onClick={closeMenu} aria-label="EdikyLabs Home">
           <img src={edikyLogo} alt="EdikyLabs" className="brand-logo" />
           <span className="brand-name">EdikyLabs</span>
         </Link>
 
-        {/* Toggler */}
         <button
           className="navbar-toggler nav-toggle"
           type="button"
@@ -110,7 +104,6 @@ function Navbar() {
           <span className="toggler-line" />
         </button>
 
-        {/* Links */}
         <div className="collapse navbar-collapse" id="nav">
           <ul className="navbar-nav ms-auto align-items-lg-center nav-gap">
             {!isHome && (
@@ -133,13 +126,11 @@ function Navbar() {
               </NavLink>
             </li>
 
-            <li className="nav-item dropdown">
-              <button className="nav-link link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Docs</button>
-              <ul className="dropdown-menu nav-dropdown" onClick={closeMenu}>
-                <li><NavLink to="/dsa-progress" className={({ isActive }) => `dropdown-item ${isActive ? "active" : ""}`}>DSA Progress</NavLink></li>
-                <li><NavLink to="/tutorials/algorithms" className={({ isActive }) => `dropdown-item ${isActive ? "active" : ""}`}>Algorithms</NavLink></li>
-                <li><NavLink to="/tutorials/machine-learning" className={({ isActive }) => `dropdown-item ${isActive ? "active" : ""}`}>Machine Learning</NavLink></li>
-              </ul>
+            {/* NEW: Docs workspace entry */}
+            <li className="nav-item">
+              <NavLink to="/docs" className={({ isActive }) => `nav-link link ${isActive ? "active" : ""}`} onClick={closeMenu}>
+                Docs
+              </NavLink>
             </li>
 
             {/* GitHub */}
@@ -152,7 +143,7 @@ function Navbar() {
               </a>
             </li>
 
-            {/* Auth: login → avatar */}
+            {/* Auth */}
             <li className="nav-item ms-lg-2">
               {!account ? (
                 <>

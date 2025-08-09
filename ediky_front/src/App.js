@@ -16,9 +16,10 @@ import Footer from "./components/Footer";
 import { UserProvider, UserContext } from "./components/userDetails/UserContext";
 import PrivateHeaderGuard from "./login/PrivateHeaderGuard";
 import Login from "./login/LoginPage";
-
-// NEW: minimalist profile page (protected)
 import Profile from "./pages/Profile";
+
+// NEW: Docs
+const DocsPage = lazy(() => import("./pages/DocsPage"));
 
 const Home = lazy(() => import("./pages/Home"));
 const AboutSection = lazy(() => import("./components/AboutSection"));
@@ -37,11 +38,11 @@ function AuthBridge() {
     setUser(
       currentUser
         ? {
-            uid: currentUser.uid,
-            name: currentUser.displayName || currentUser.email,
-            email: currentUser.email,
-            progress: JSON.parse(localStorage.getItem("userProgress") || "{}"),
-          }
+          uid: currentUser.uid,
+          name: currentUser.displayName || currentUser.email,
+          email: currentUser.email,
+          progress: JSON.parse(localStorage.getItem("userProgress") || "{}"),
+        }
         : null
     );
   }, [currentUser, loading, setUser]);
@@ -95,7 +96,10 @@ export default function App() {
                   <Route path="about" element={<AboutSection />} />
                   <Route path="login" element={<Login />} />
 
-                  {/* The only protected feature: Profile editor */}
+                  {/* NEW: Docs workspace (public read; saving requires login) */}
+                  <Route path="docs/*" element={<DocsPage />} />
+
+                  {/* Protected: Profile */}
                   <Route path="profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
 
                   <Route path="404" element={<NotFound />} />
